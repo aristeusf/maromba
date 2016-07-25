@@ -1,0 +1,16 @@
+{
+  "name": "maromba",
+  "version": "0.0.1",
+  "description": "Maromba",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aristeu da Silva Filho",
+  "license": "ISC",
+  "dependencies": {
+    "express": "~4.8.8",
+    "ejs": "~0.8.8",
+    "express-load": "~1.1.15"
+  }
+}
