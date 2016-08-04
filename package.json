@@ -11,6 +11,11 @@
   "dependencies": {
     "express": "~4.8.8",
     "ejs": "~0.8.8",
-    "express-load": "~1.1.15"
+    "express-load": "~1.1.15",
+    "method-override": "~2.1.3",
+    "body-parser": "~1.6.7",
+    "git": "~0.1.5",
+    "mongodb": "~1.4.40",
+    "mongoose": "~3.8.40"
   }
 }

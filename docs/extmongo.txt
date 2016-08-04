@@ -1,0 +1,17 @@
+[academia:{
+		nome: 
+		endereco: 
+		telefone: 
+		cnpj: 
+		professores{
+			nome:
+			telefone:
+			endereco:
+			alunos{
+				nome:
+				endereco:
+				telefone:
+				'
+			}
+		}
+}]
