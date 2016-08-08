@@ -1,23 +1,26 @@
 var mongoose = require('mongoose');
 
-var descExerciciosSchema = require('descexercicios');
+var descExerciciosSchema = require('../models/descexcercicios').schema;
 
 module.exports = function(){
 	var schema = mongoose.Schema({
-		numero{
+		exercicio{
+			type: mongoose.Schema.ObjectId,
+			ref: 'Exercicios'
+		}
+		numero:{
 			type: Number
 		},
-		descricao:[descExerciciosSchema],
-		intensidade{
+		intensidade:{
 			type: String
 		},
-		tempo{
+		tempo:{
 			type: String
 		},
-		repeticoes{
-			type: number
+		repeticoes:{
+			type: Number
 		},
-		carga{
+		carga:{
 			type: String
 		}
 	});

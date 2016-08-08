@@ -37,4 +37,6 @@ module.exports = function(app){
 	controller.deleteAlunos = function(req,res){
 		
 	};
+
+	return controller;
 }

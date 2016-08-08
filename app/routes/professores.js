@@ -4,9 +4,9 @@ module.exports = function (app) {
 
   app.route('/professores')
   	.get(controller.getProfessores)
-  	.post(controller.SaveProfessores)
+  	.post(controller.saveProfessores)
 
   app.route('/professores/:id')
 	.get(controller.getProfessor)
-	.delete(controller.deletProfessores);
+	.delete(controller.deleteProfessores);
 };

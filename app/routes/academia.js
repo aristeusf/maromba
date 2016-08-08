@@ -1,5 +1,5 @@
 module.exports = function (app) {
-	
+
   var controller = app.controllers.academia;
 
   app.route('/academia')

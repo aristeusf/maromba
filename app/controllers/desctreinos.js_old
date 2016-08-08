@@ -37,3 +37,6 @@ module.exports = function(app){
 	controller.deleteDescTreinos = function(req,res){
 		
 	};
+
+	return controller;
+};

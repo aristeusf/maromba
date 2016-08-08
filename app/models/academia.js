@@ -1,25 +1,28 @@
 var mongoose = require('mongoose');
 
-var professoresSchema = require('professores');
+var professoresSchema = require('../models/professores').schema;
 
 module.exports = function(){
 	var schema = mongoose.Schema({
 
-		razaosocial{
+		razaosocial:{
 			type: String
 		},
-		endereco{
+		endereco:{
 			type: String
 		},
-		fone{
+		fone:{
 			type: String
 		},
-		cnpj{
+		cnpj:{
 			type: String,
 			unique: true
 		}
+		professores:{
+			type: mongoose.Schema.ObjectId,
+			ref: 'Professores'
+		}
 
-		professores:[professoresSchema]
 
 	});
 

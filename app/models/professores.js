@@ -1,30 +1,33 @@
 var mongoose = require('mongoose');
 
-var alunosSchema = require('alunos');
+var alunosSchema = require('../models/alunos').schema;
 
 module.exports = function(){
 	var schema = mongoose.Schema({
 
-		nome{
+		nome:{
 			type: String
 		},
-		fone{
+		fone:{
 			type: String
 		},
-		email{
+		email:{
 			type: String,
 			unique: true
 		},
-		endereco{
+		endereco:{
 			type: String
 		},
-		cpf{
+		cpf:{
 			type: String
 		},
 
-		alunos:[alunosSchema]
+		alunos:{
+			type: mongoose.Schema.ObjectId,
+			ref: 'Alunos'
+		}
 
-	});
+	},
 
 	return mongoose.model('Professores', schema);
 }

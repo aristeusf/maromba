@@ -1,52 +1,60 @@
 var mongoose = require('mongoose');
 
-var medidasSchema = require('medidas');
-var execiciosSchema = require('execicios');
-var treinosSchema = require('treinos');
+var medidasSchema = require('../models/medidas').schema;
+var execiciosSchema = require('../models/exercicios').schema;
+var treinosSchema = require('../models/treinos').schema;
 
 module.exports = function(){
 	var schema = mongoose.Schema({
 
-		nome{
+		nome:{
 			type: String
 		},
-		endereco{
+		endereco:{
 			type: String
 		},
-		fone{
+		fone:{
 			type: String
 		},
-		email{
+		email:{
 			type: String,
 			unique: true
 		},
-		cpf{
+		cpf:{
 			type: String,
 			unique: true
 		},
-		idade{
+		idade:{
 			type: String
 		},
-		objetivo{
+		objetivo:{
 			type: String
 		},
-		inicio{
+		inicio:{
 			type: String
 		},
-		duracao{
+		duracao:{
 			type: String
 		},
-		treinossemana{
+		treinossemana:{
 			type: String
 		},
-		intervalo{
+		intervalo:{
 			type: String
 		},
 
-		medidas:[medidasSchema],
-		exercicios:[execiciosSchema],
-		treinos:[treinosSchema]
-
+		medidas:{
+			type: mongoose.Schema.ObjectId,
+			ref: 'Medidas'
+		}
+		exercicios:{
+			type: mongoose.Schema.ObjectId,
+			ref: 'Exercicios'
+		},
+		treinos:{
+			type: mongoose.Schema.ObjectId,
+			ref: 'Treinos'
+		}
 	});
 
 	return mongoose.model('Alunos', schema);

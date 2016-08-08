@@ -1,23 +1,23 @@
 var mongoose = require('mongoose');
 
-var descExerciciosSchema = require('descexercicios');
+var descExerciciosSchema = require('../models/descexcercicios').schema;
 
 module.exports = function(){
 	var schema = mongoose.Schema({
-		numero{
+		numero:{
 			type: Number
 		},
 		exercicios:[descExerciciosSchema],
-		reg{
+		reg:{
 			type: String
 		},
-		series{
+		series:{
 			type: String
 		},
-		Repeticoes{
+		repeticoes:{
 			type: String
 		},
-		peso{
+		peso:{
 			type: String
 		}
 	});

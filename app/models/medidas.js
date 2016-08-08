@@ -2,43 +2,43 @@ var mongoose = require('mongoose');
 
 module.exports = function(){
 	var schema = mongoose.Schema({
-		data{
+		data:{
 			type: Date
 		},
-		torax{
+		torax:{
 			type: Number
 		},
-		cintura{
-			type: Number
-		}
-		barriga{
+		cintura:{
 			type: Number
 		},
-		quadril{
+		barriga:{
 			type: Number
 		},
-		bracodir{
+		quadril:{
 			type: Number
 		},
-		bracoesq{
+		bracodir:{
 			type: Number
 		},
-		antbracod{
+		bracoesq:{
 			type: Number
 		},
-		antbracoe{
+		antbracod:{
 			type: Number
 		},
-		coxadir{
+		antbracoe:{
 			type: Number
 		},
-		coxaesq{
+		coxadir:{
 			type: Number
 		},
-		pernadir{
+		coxaesq:{
 			type: Number
 		},
-		ernaesq{
+		pernadir:{
+			type: Number
+		},
+		ernaesq:{
 			type: Number
 		}
 	});

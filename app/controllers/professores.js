@@ -1,12 +1,15 @@
 module.exports = function(app){
 	var controller = {};
-	var Professores = app.models.professores;
+	var MongoAcademia = app.models.academia;
 
 	controller.getProfessores = function(req, res){
-		Professores.find().exec()
+
+		var _id = req.query.id;
+		console.log(_id);
+		MongoAcademia.findById(_id).exec()
 			.then(
-				function(professores){
-					res.json(professores);
+				function(academia){
+					res.json(academia.professores);
 				},
 				function(erro){
 					console.error(erro);
@@ -15,9 +18,9 @@ module.exports = function(app){
 			);
 	};
 
-	controller.getProfessores = function(req, res){
+	controller.getProfessor = function(req, res){
 		var _id = req.params.id;
-		Professores.findById(_id).exec()
+		Academia.professores.findById(_id).exec()
 			.then(
 				function(professores){
 					if (!professores) throw new Error("Contato não encontrado");
@@ -32,9 +35,52 @@ module.exports = function(app){
 
 	controller.saveProfessores = function(req,res){
 
+		var bodyy = req.body;
+		var academia = bodyy.academia;;
+		var professores = academia.professores;
+		var _id = professores._id;
+
+		if(_id){
+			
+		}
+		else {
+			var profInsert = professores;
+			console.log(professores);
+			MongoAcademia.findById(academia._id).exec()
+				.then(
+					function(Academia){
+
+						if(Academia.professores.length > 0)
+						{
+							for(var i = 0; i < Academia.professores.length; i++)
+							{
+								Academia.professores[i].remove;
+							}
+						}
+
+						Academia.professores.push(profInsert);
+
+						Academia.save(function (erro) {
+						  if (!erro){
+						  	res.status(201);
+						  	console.log('Professor adicionado com sucesso!');
+						  }
+						  else
+						  {
+						  	res.status(404).json(erro);
+						  	console.log(erro);
+						  }
+						});
+
+					}
+				);
+		}
+
 	};
 
 	controller.deleteProfessores = function(req,res){
 		
 	};
+
+	return controller;
 }
