@@ -4,13 +4,10 @@ module.exports = function(){
 	var schema = mongoose.Schema({
 		treinamnetos:{
 			type: mongoose.Schema.ObjectId,
-			ref: 'Treinamnetos'
-		}
+			ref: 'Treinamentos'
+		},
 		numero:{
 			type: Number
-		},
-		nome:{
-			type: String,
 		},
 		reg:{
 			type: String

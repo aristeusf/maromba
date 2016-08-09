@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 
-var professoresSchema = require('../models/professores').schema;
-
 module.exports = function(){
 	var schema = mongoose.Schema({
 
@@ -17,14 +15,13 @@ module.exports = function(){
 		cnpj:{
 			type: String,
 			unique: true
-		}
+		},
 		professores:{
 			type: mongoose.Schema.ObjectId,
 			ref: 'Professores'
 		}
 
-
 	});
 
 	return mongoose.model('Academia', schema);
-}
+};

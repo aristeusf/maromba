@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 
-var alunosSchema = require('../models/alunos').schema;
-
 module.exports = function(){
 	var schema = mongoose.Schema({
 
@@ -27,7 +25,7 @@ module.exports = function(){
 			ref: 'Alunos'
 		}
 
-	},
+	});
 
 	return mongoose.model('Professores', schema);
 }

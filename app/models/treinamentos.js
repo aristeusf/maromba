@@ -7,8 +7,14 @@ module.exports = function(){
 			ref: 'PartesCorpo'
 		},
 		nome:{
-			type: String,
+			type: String
 		},
+		foto:{
+			type: String
+		},
+		linkvideo:{
+			type: String
+		}
 	});
 
 	return mongoose.model('Treinamentos', schema);

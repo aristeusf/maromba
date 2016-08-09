@@ -5,7 +5,13 @@ module.exports = function(){
 		nome:{
 			type: String,
 		},
+		foto:{
+			type: String
+		},
+		linkvideo:{
+			type: String
+		}
 	});
 
-	return mongoose.model('Treinamentos', schema);
+	return mongoose.model('DescExercicios', schema);
 }

@@ -1,9 +1,5 @@
 var mongoose = require('mongoose');
 
-var medidasSchema = require('../models/medidas').schema;
-var execiciosSchema = require('../models/exercicios').schema;
-var treinosSchema = require('../models/treinos').schema;
-
 module.exports = function(){
 	var schema = mongoose.Schema({
 
@@ -46,7 +42,7 @@ module.exports = function(){
 		medidas:{
 			type: mongoose.Schema.ObjectId,
 			ref: 'Medidas'
-		}
+		},
 		exercicios:{
 			type: mongoose.Schema.ObjectId,
 			ref: 'Exercicios'
