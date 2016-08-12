@@ -1,16 +1,17 @@
 var mongoose = require('mongoose');
 
-var Treino = require('../models/treino').schema;
+var Aparelhos = require('../models/aparelhos').schema;
 
 module.exports = function(){
 	var schema = mongoose.Schema({
 
-		descricao:{
+		nome:{
 			type: String
 		},
 
-		treino:[Treino],
+		aparelhos:[Aparelhos]
+
 	});
 
-	return mongoose.model('Treinamento', schema);
+	return mongoose.model('Corpo', schema);
 };

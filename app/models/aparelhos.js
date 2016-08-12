@@ -2,10 +2,11 @@ var mongoose = require('mongoose');
 
 module.exports = function(){
 	var schema = mongoose.Schema({
+
 		nome:{
-			type: String,
+			type: String
 		},
 	});
 
-	return mongoose.model('PartesCorpo', schema);
-}
+	return mongoose.model('Aparelho', schema);
+};

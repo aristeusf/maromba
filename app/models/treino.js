@@ -1,27 +1,31 @@
 var mongoose = require('mongoose');
 
+var Aparelho = require('../models/aparelhos').schema;
+
 module.exports = function(){
 	var schema = mongoose.Schema({
-		exercicio:{
-			type: mongoose.Schema.ObjectId,
-			ref: 'Exercicios'
-		},
+
+		aparelho:[Aparelho],
+
 		numero:{
-			type: Number
+			type: Number,
 		},
-		intensidade:{
+		
+		reg:{
 			type: String
 		},
-		tempo:{
+
+		series:{
 			type: String
 		},
 		repeticoes:{
-			type: Number
+			type: String
 		},
-		carga:{
+		peso:{
 			type: String
 		}
+
 	});
 
-	return mongoose.model('Exercicios', schema);
-}
+	return mongoose.model('Treino', schema);
+};
