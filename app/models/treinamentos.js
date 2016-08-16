@@ -1,16 +1,45 @@
 var mongoose = require('mongoose');
 
-var Treino = require('../models/treino').schema;
+//var Aparelhos = require('../models/aparelhos').schema;
+//var app = require('./config/express')();
 
-module.exports = function(){
-	var schema = mongoose.Schema({
+var Aparelhos = app.models.aparelhos.schema;
 
-		descricao:{
-			type: String
-		},
+var TreinoSchema = new mongoose.Schema({
 
-		treino:[Treino],
-	});
+	numero: Number,
+	
+	reg: String,
 
-	return mongoose.model('Treinamento', schema);
+	series: String,
+
+	repeticoes: String,
+	
+	peso: String,
+
+	seriesrel: String,
+
+	repeticoesrel: String,
+
+	pesorel: String,
+
+	datatreino: String,
+
+	aparelhos: [Aparelhos]
+});
+
+var TreinamentosSchema = new mongoose.Schema({
+
+	descricao: String,
+
+	treino: [TreinoSchema]
+});
+
+var TreinamentosModel = mongoose.model('Treinamento', TreinamentosSchema);
+
+var Export = {
+	schema: TreinamentosSchema,
+	model:TreinamentosModel
 };
+
+module.exports = Export;

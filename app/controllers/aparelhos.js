@@ -1,11 +1,10 @@
 module.exports = function(app){
 	var controller = {};
 
-	var Aparelhos = app.models.aparelhos;
-	var Corpo = app.models.corpo;
+	var Aparelhos = app.models.aparelhos.model;
+	var Corpo = app.models.corpo.model;
 
 	controller.getAparelhos = function(req, res){
-		console.log("getCorpos");
 		Aparelhos.find().exec()
 			.then(
 				function(aparelhos){
@@ -36,11 +35,12 @@ module.exports = function(app){
 	controller.saveAparelho = function(req,res){
 		var _id = req.body._id;
 		var _idcorpo = req.body._idcorpo;
-		console.log(_id);
 		if(_id){
 
 			var atualiza = {
-				nome:req.body.nome
+				nome:req.body.nome,
+				linkvideo:req.body.linkvideo,
+				foto:req.body.foto
 			};
 
 			Aparelhos.findByIdAndUpdate(_id, atualiza).exec()
@@ -62,7 +62,9 @@ module.exports = function(app){
 						Corpo.findOne({_id: _idcorpo}, function(err, corpo) {
 							if(!err)
 							{
-								corpo.aparelhos.push({_id:aparelhos._id});
+								corpo.aparelhos.push({
+									_id:aparelhos._id
+								});
 								corpo.save();
 								res.status(201).json(aparelhos);
 							}
@@ -101,49 +103,36 @@ module.exports = function(app){
 	controller.removeAparelhoCorpo = function(req,res){
 		var _idCorpo = req.params.idcorpo;
 
-		var conloleMsg = "Id Corpo " + _idCorpo;
-		console.log(conloleMsg);
-
 		var _idAparelho = req.params.idaparelho;
-
-		conloleMsg = "Id Aparelho " + _idAparelho;
-		console.log(conloleMsg);
 		
-		Corpo.findById(_idCorpo, function (erro, corpo) {
-
-			console.log(corpo);
+		Corpo.findOne({_id: _idCorpo}, function (erro, corpo) {
 
 			if (!erro) {
 
-				for (var i = 0; i < corpo.aparelhos.length; i++){
+				corpo.aparelhos.id(_idAparelho).remove();
 
-					var aparelho = corpo.aparelhos[i];
+				corpo.save(function (err){
+					if(!err){
 
-				    console.log(aparelho);
+						Aparelhos.remove({"_id" : _idAparelho}).exec()
+							.then(
+								function() {
+									res.status(204).end();
+								},
+								function(erro) {
+									return console.error(erro);
+								}
+							);
+						
+					} else 
+						return console.error(erro);
 
-				    if(aparelho._id == _idAparelho){
+				});
 
-				    	corpo.aparelhos[i].remove();
-
-				    	corpo.save(function (err){
-				    		Aparelhos.remove({"_id" : _idAparelho}).exec()
-					    		.then(
-					    			function() {
-					    				res.status(204).end();
-					    			},
-					    			function(erro) {
-					    				return console.error(erro);
-					    			}
-			    				);
-				    	});
-				    }
-				}
-			} else {
+			} else
 				console.error(erro);
-			}
-		}
+		})
 	}
-
 
 	return controller;
 }

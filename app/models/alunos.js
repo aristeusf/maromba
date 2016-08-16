@@ -1,34 +1,32 @@
 var mongoose = require('mongoose');
 
-var Treinamento = require('../models/treinamentos').schema;
+//var app = require('../config/express')();
 
-module.exports = function(){
-	var schema = mongoose.Schema({
+var Treinamento = app.models.treinamentos.schema; //require('../models/treinamentos').schema;
+var Medidas = app.models.medidas.schema; //require('../models/medidas').schema;
+var Exercicios = app.models.exercicios.schema; //require('../models/exercicios').schema;
 
-		nome:{
-			type: String
-		},
+var AlunosSchema = mongoose.Schema({
 
-		cpf:{
-			type: String
-		},
+	nome: String,
+	cpf: String,
+	endereco: String,
+	fone: String,
+	email:{
+		type: String,
+		unique: true
+	},
+	medidas:[Medidas],
+	exercicios:[Exercicios],
+	treinamento:[Treinamento]
 
-		endereco:{
-			type: String
-		},
+});
 
-		fone:{
-			type: String
-		},
+var AlunosModels =  mongoose.model('Aluno', AlunosSchema);
 
-		email:{
-			type: String,
-			unique: true
-		},
+var Export = {
+	schema: AlunosSchema,
+	model: AlunosModels
+}
 
-		treinamento:[Treinamento]
-
-	});
-
-	return mongoose.model('Aluno', schema);
-};
+module.exports = Export;
