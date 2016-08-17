@@ -1,4 +1,5 @@
 module.exports = function(app){
+	
 	var controller = {};
 
 	var Treinamentos = app.models.treinamentos.model;

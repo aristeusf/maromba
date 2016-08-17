@@ -1,17 +1,20 @@
 var mongoose = require('mongoose');
 
-var AparelhosSchema = new mongoose.Schema({
-		nome: String,
-		linkvideo: String,
-		foto: String
-	});
+module.exports = function(app){
 
-var AparelhosModel = mongoose.model('Aparelho', AparelhosSchema);
+	var AparelhosSchema = new mongoose.Schema({
+			nome: String,
+			linkvideo: String,
+			foto: String
+		});
 
-var Export = {
-	schema: AparelhosSchema,
-	model:AparelhosModel
-};
+	var AparelhosModel = mongoose.model('Aparelho', AparelhosSchema);
+
+	var Export = {
+		schema: AparelhosSchema,
+		model:AparelhosModel
+	};
 
 
-module.exports = Export;
+	return Export;
+}

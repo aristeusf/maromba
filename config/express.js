@@ -16,7 +16,14 @@ module.exports = function() {
   app.use(require('method-override')());
 
 
-  load('models', {cwd: 'app'})
+  load('models/aparelhos', {cwd: 'app'})
+    .then('models/corpo', {cwd: 'app'})
+    .then('models/treino', {cwd: 'app'})
+    .then('models/treinamentos', {cwd: 'app'})
+    .then('models/descexerc', {cwd: 'app'})
+    .then('models/exercicios', {cwd: 'app'})
+    .then('models/medidas', {cwd: 'app'})
+    .then('models/alunos', {cwd: 'app'})
   	.then('controllers')
   	.then('routes')
   	.into(app);

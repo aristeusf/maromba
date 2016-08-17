@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 
-var Aparelhos = require('../models/aparelhos').schema;
+module.exports = function(app){
+
+var Aparelhos = app.models.aparelhos.schema;
 
 var CorpoSchema = new mongoose.Schema({
 
@@ -17,4 +19,6 @@ var Export = {
 	model: CorpoModel
 };
 
-module.exports = Export;
+return Export;
+
+}
