@@ -89,31 +89,100 @@ module.exports = function(app){
 	};
 
 	controller.saveSubItem = function(req, res){
+	
 		var idaluno = req.params.idaluno;
 		var idsubitem = req.params.idsubitem;
 		var tpsubitem = req.params.tiposub;
+		var tipoacao = req.params.tipoacao;
+		var idtreinamento = req.params.idtreinamento;
+		var idtreino = req.params.idtreino;
 
 		Alunos.findOne({_id: idaluno}, function (erro, alunos) {
-
-			var treino = alunos.treino.id(idtreino);
-
-			alunos.numero = req.body.numero;
-			alunos.reg = req.body.reg;
-			alunos.series = req.body.series;
-			alunos.repeticoes = req.body.repeticoes;
-			alunos.peso = req.body.peso;
-			alunos.seriesrel = req.body.seriesrel;
-			alunos.repeticoesrel = req.body.repeticoesrel;
-			alunos.pesorel = req.body.pesorel;
-
-			alunos.save(function (erro){
+		
+			var retorno = null;
+		
+			switch(tipoacao){
+				case 'Insert':
+					
+					switch(tpsubitem){
+						case 'Medidas':
+							alunos.medidas.push(req.body);
+							break;
+						case 'Exercicios':
+							alunos.exercicios.push(req.body);
+							break;
+						case 'Treinamentos':
+							alunos.treinamento.push(req.body);
+							break;
+						case 'Treino':
+							var Treinamentos = alunos.treinamento.id(idtreinamento);
+							Treinamentos.treino.push(req.body);
+							break;
+					}
+					
+					break;
+				case 'Update':
+					switch(tpsubitem){
+						case 'Medidas':
+							var Medidas = alunos.medidas.id(idsubitem);
+							Medidas.data = req.body.data;
+							Medidas.torax = req.body.torax;
+							Medidas.cintura = req.body.cintura;
+							Medidas.barriga = req.body.barriga;
+							Medidas.quadril = req.body.quadril;
+							Medidas.bracodir = req.body.bracodir;
+							Medidas.bracoesq = req.body.bracoesq;
+							Medidas.antebracodir = req.body.antebracodir;
+							Medidas.antebracoesq = req.body.antebracoesq;
+							Medidas.coxadir = req.body.coxadir;
+							Medidas.coxaesq = req.body.coxaesq;
+							Medidas.pernadir = req.body.pernadir;
+							Medidas.pernaesq = req.body.pernaesq;
+							break;
+						case 'Exercicios':
+							console.log(req.body.descricao);
+							var Exercicos = alunos.exercicios.id(idsubitem);
+							Exercicos.numero = req.body.numero;
+							Exercicos.descricao =  [req.body.descricao];
+							Exercicos.intensidade = req.body.intensidade;
+							Exercicos.tempo = req.body.tempo;
+							Exercicos.repeticoes = req.body.repeticoes;
+							Exercicos.carga = req.body.carga;
+							Exercicos.intensidadereal = req.body.intensidadereal;
+							Exercicos.temporeal = req.body.temporeal;
+							Exercicos.repeticoesreal = req.body.repeticoesreal;
+							Exercicos.cargareal = req.body.cargareal;
+							Exercicos.datareal = req.body.datareal
+							break;
+						case 'Treinamentos':
+							var Treinamentos = alunos.treinamento.id(idsubitem);
+							Treinamentos.descricao = req.body.descricao;
+							break;
+						case 'Treino':
+							var Treinamentos = alunos.treinamento.id(idtreinamento);
+							var Treino = Treinamentos.id(idtreino);
+							Treino.numero = req.body.numero;
+							Treino.reg = req.body.reg;
+							Treino.series = req.body.series;
+							Treino.repeticoes = req.body.repeticoes;
+							Treino.peso = req.body.peso;
+							Treino.seriesrel = req.body.seriesrel;
+							Treino.repeticoesrel = req.body.repeticoesrel;
+							Treino.pesorel = req.body.pesorel;
+							Treino.datatreino = req.body.datatreino;
+							Treino.aparelhos = req.body.aparelhos;
+							break;
+					}
+					break;
+			}
+			
+			alunos.save(function(erro){
 				if(!erro)
-					res.status(201).json(treino);
+					res.status(201).json(req.body);
 				else{
 					console.log(erro);
-					res.status(500).json(erro);
+					es.status(500).json(erro);
 				}
-
 			});
 
 		});
@@ -121,12 +190,32 @@ module.exports = function(app){
 
 	controller.removeSubItem = function(req, res){
 
+		var idaluno = req.params.idaluno;
+		var idsubitem = req.params.idsubitem;
+		var tpsubitem = req.params.tiposub;
+		var tipoacao = req.params.tipoacao;
 		var idtreinamento = req.params.idtreinamento;
 		var idtreino = req.params.idtreino;
 
-		Alunos.findOne({_id: idtreinamento}, function (erro, alunos) {
-
-			alunos.treino.id(idtreino).remove();
+		Alunos.findOne({_id: idaluno}, function (erro, alunos) {
+		
+			if (tipoacao == 'Delete'){
+				switch(tpsubitem){
+					case 'Medidas':
+						alunos.medidas.id(idsubitem).remove();
+						break;
+					case 'Exercicios':
+						alunos.exercicios.id(idsubitem).remove();
+						break;
+					case 'Treinamentos':
+						alunos.treinamento.id(idsubitem).remove();
+						break;
+					case 'Treino':
+						var Treinamento = alunos.treinamento.id(idsubitem);
+						Treinamento.treino.id().remove();
+						break;
+				}
+			}
 
 			alunos.save(function (erro){
 				if(!erro)
@@ -137,8 +226,6 @@ module.exports = function(app){
 				}
 			});
 		});
-
 	};
-
 	return controller;
 }
