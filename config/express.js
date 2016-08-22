@@ -24,6 +24,8 @@ module.exports = function() {
     .then('models/exercicios', {cwd: 'app'})
     .then('models/medidas', {cwd: 'app'})
     .then('models/alunos', {cwd: 'app'})
+	.then('models/professores', {cwd: 'app'})
+	.then('models/academia', {cwd: 'app'})
   	.then('controllers')
   	.then('routes')
   	.into(app);

@@ -160,7 +160,7 @@ module.exports = function(app){
 							break;
 						case 'Treino':
 							var Treinamentos = alunos.treinamento.id(idtreinamento);
-							var Treino = Treinamentos.id(idtreino);
+							var Treino = Treinamentos.treino.id(idtreino);
 							Treino.numero = req.body.numero;
 							Treino.reg = req.body.reg;
 							Treino.series = req.body.series;
@@ -181,7 +181,7 @@ module.exports = function(app){
 					res.status(201).json(req.body);
 				else{
 					console.log(erro);
-					es.status(500).json(erro);
+					res.status(500).json(erro);
 				}
 			});
 
@@ -211,8 +211,10 @@ module.exports = function(app){
 						alunos.treinamento.id(idsubitem).remove();
 						break;
 					case 'Treino':
-						var Treinamento = alunos.treinamento.id(idsubitem);
-						Treinamento.treino.id().remove();
+						console.log(idtreinamento);
+						console.log(idtreino);
+						var Treinamento = alunos.treinamento.id(idtreinamento);
+						Treinamento.treino.id(idtreino).remove();
 						break;
 				}
 			}

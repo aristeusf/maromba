@@ -14,7 +14,5 @@ module.exports = function(app){
 		schema: AparelhosSchema,
 		model:AparelhosModel
 	};
-
-
 	return Export;
 }
