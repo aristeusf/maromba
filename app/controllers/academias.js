@@ -1,7 +1,7 @@
 module.exports = function(app){
 	var controller = {};
 
-	var Academias = app.models.academia.model;
+	var Academias = app.models.academias.model;
 
 	controller.getAcademias = function(req, res){
 		Academias.find().exec()

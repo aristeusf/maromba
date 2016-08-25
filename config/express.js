@@ -17,15 +17,16 @@ module.exports = function() {
 
 
   load('models/aparelhos', {cwd: 'app'})
-    .then('models/corpo', {cwd: 'app'})
-    .then('models/treino', {cwd: 'app'})
+    .then('models/corpos', {cwd: 'app'})
+    .then('models/treinos', {cwd: 'app'})
     .then('models/treinamentos', {cwd: 'app'})
     .then('models/descexerc', {cwd: 'app'})
     .then('models/exercicios', {cwd: 'app'})
     .then('models/medidas', {cwd: 'app'})
     .then('models/alunos', {cwd: 'app'})
 	.then('models/professores', {cwd: 'app'})
-	.then('models/academia', {cwd: 'app'})
+	.then('models/academias', {cwd: 'app'})
+	.then('models/usuarios', {cwd: 'app'})
   	.then('controllers')
   	.then('routes')
   	.into(app);

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = function(app){
 
-	var Treinos = app.models.treino.schema;
+	var Treinos = app.models.treinos.schema;
 
 	var TreinamentosSchema = new mongoose.Schema({
 

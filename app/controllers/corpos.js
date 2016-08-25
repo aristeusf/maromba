@@ -1,6 +1,6 @@
 module.exports = function(app){
 	var controller = {};
-	var Corpo = app.models.corpo.model;
+	var Corpo = app.models.corpos.model;
 
 	controller.getCorpos = function(req, res){
 		Corpo.find().exec()

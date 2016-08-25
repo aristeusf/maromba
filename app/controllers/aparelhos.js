@@ -2,7 +2,7 @@ module.exports = function(app){
 	var controller = {};
 
 	var Aparelhos = app.models.aparelhos.model;
-	var Corpo = app.models.corpo.model;
+	var Corpo = app.models.corpos.model;
 
 	controller.getAparelhos = function(req, res){
 		Aparelhos.find().exec()

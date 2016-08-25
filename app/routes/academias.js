@@ -1,6 +1,6 @@
 module.exports = function (app) {
 	
-var controller = app.controllers.academia;
+var controller = app.controllers.academias;
 
 	app.route('/academias')
 		.get(controller.getAcademias)

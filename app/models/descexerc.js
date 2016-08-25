@@ -1,14 +1,17 @@
 var mongoose = require('mongoose');
 
-var descSchema = mongoose.Schema({
-	descricao: String
-});
+module.exports = function(app){
 
-var descModel = mongoose.model('DescExerc', descSchema);
+	var descSchema = mongoose.Schema({
+		descricao: String
+	});
 
-var Export = {
-	schema: descSchema,
-	model: descModel
-};
+	var descModel = mongoose.model('DescExerc', descSchema);
 
-module.exports = Export;
+	var Export = {
+		schema: descSchema,
+		model: descModel
+	};
+
+	return Export;
+}

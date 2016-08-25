@@ -2,15 +2,15 @@ module.exports = function (app) {
 	
   var controller = app.controllers.treinamentos;
 
-  app.route('/treinamento')
+  app.route('/treinamentos')
   	.get(controller.getTreinamentos)
   	.post(controller.saveTreinamentos)
 
-  app.route('/treinamento/:id')
+  app.route('/treinamentos/:id')
 	 .get(controller.getTreinamento)
 	 .delete(controller.removeTreinamentos)
 
-  app.route('/treinamento/:idtreinamento/:idtreino')
+  app.route('/treinamentos/:idtreinamento/:idtreino')
 	 .post(controller.saveTreino)
 	 .delete(controller.removeTreino)
    

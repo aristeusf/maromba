@@ -31,7 +31,7 @@ module.exports = function(app){
 
 	var Export = {
 		schema: TreinoSchema,
-		model:TreinoModel
+		model: TreinoModel
 	};
 
 	return Export;

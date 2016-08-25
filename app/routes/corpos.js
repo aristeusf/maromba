@@ -1,12 +1,12 @@
 module.exports = function (app) {
 	
-  var controller = app.controllers.corpo;
+  var controller = app.controllers.corpos;
 
-  app.route('/corpo')
+  app.route('/corpos')
   	.get(controller.getCorpos)
   	.post(controller.saveCorpo)
 
-  app.route('/corpo/:id')
+  app.route('/corpos/:id')
 	.get(controller.getCorpo)
 	.delete(controller.removeCorpo)
 };
