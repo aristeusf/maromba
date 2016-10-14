@@ -87,7 +87,8 @@ module.exports = function(app){
 		var idprofe = req.params.idprofe;
 		
 		Academias.findOne({_id: idacad}, function(erro, academia) {
-			academia.professores.push({_id:idprofe});
+			//academia.Update('$set'{})
+			academia.idprofessores.push(idprofe);	
 			if(!erro){
 				academia.save();
 				res.status(201).json(academia);
@@ -104,9 +105,12 @@ module.exports = function(app){
 	
 		var idacad = req.params.idacad;
 		var idprofe = req.params.idprofe;
-		
+
 		Academias.findOne({_id: idacad}, function(erro, academia) {
-			academia.professores.id(idprofe).remove();
+			
+			var index = academia.idprofessores.indexOf(idprofe);
+			
+			academia.idprofessores.splice(index, 1);
 			if(!erro){
 				academia.save();
 				res.status(201).end();

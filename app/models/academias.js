@@ -13,7 +13,7 @@ module.exports = function(app){
 			type: String,
 			unique: true
 		},
-		professores:[Professores]
+		idprofessores:[mongoose.Schema.Types.ObjectId]
 
 	});
 	

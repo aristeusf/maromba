@@ -14,7 +14,7 @@ module.exports = function(app){
 			type: String,
 			unique: true
 		},
-		alunos:[Alunos]
+		alunos:[mongoose.Schema.Types.ObjectId]
 
 	});
 	

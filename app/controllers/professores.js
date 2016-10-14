@@ -15,6 +15,36 @@ module.exports = function(app){
 				}
 			);
 	};
+	
+	controller.getProfessoresByAcademiaId = function(req, res){
+		var _id = req.params.id;
+		console.error(_id);
+		var Academias = app.models.academias.model;
+		
+		Academias.findById(_id)
+			.then(
+				function(academias){
+					if (!academias) throw new Error("Contato não encontrado");
+					{
+						Professores.find( { _id: { $in: academias.idprofessores } } ).exec()
+							.then(
+								function(professores){
+									if (!professores) throw new Error("Contato não encontrado");
+										res.json(professores);
+								},
+								function(erro){
+									console.error(erro);
+									res.status(404).json(erro);
+								}
+							);
+					}
+				},
+				function(erro){
+					console.error(erro);
+					res.status(404).json(erro);
+				}
+			);
+	};
 
 	controller.getProfessor = function(req, res){
 		var _id = req.params.id;
@@ -68,6 +98,7 @@ module.exports = function(app){
 				);
 		}
 	};
+
 
 	controller.removeProfessores = function(req,res){
 		var _id = req.params.id;

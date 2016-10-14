@@ -9,6 +9,7 @@ var controller = app.controllers.professores;
 	app.route('/professores/:id')
 		.get(controller.getProfessor)
 		.delete(controller.removeProfessores)
+		.put(controller.getProfessoresByAcademiaId)
 
 	app.route('/professores/:idprofe/:idaluno')
 		.delete(controller.removeAluno)
